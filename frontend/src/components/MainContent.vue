@@ -43,12 +43,12 @@
 
 		#main-content
 			display: flex
-			flex-wrap: wrap
 
 		#filter-data
 			width: 308px
+			margin-right: 20px
 
 		#hotel-list
-			width: 78%
+			width: 75%
 
 </style>
