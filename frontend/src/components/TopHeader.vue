@@ -27,7 +27,7 @@
 
 <style lang="sass" scoped>
 
-	@import '../../static/assets/css/_colors'
+	@import '../../static/assets/css/colors'
 	
 	header
 		width: 100%

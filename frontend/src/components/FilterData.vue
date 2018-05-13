@@ -36,35 +36,9 @@
 				<input type="checkbox" v-model="selectedAll" v-on:change="checkboxAll(selectedAll)" />
 				<p>Todas las estrellas</p>
 			</div>
-			<div class="checkbox-star">
-				<input class="mg4" type="checkbox" v-model="selected" v-on:change="checkboxOne(selected)" value="1" />
-				<img :src="starYellow" alt="" />
-			</div>
-			<div class="checkbox-star">
-				<input class="mg4" type="checkbox" v-model="selected" v-on:change="checkboxOne(selected)" value="2" />
-				<img :src="starYellow" alt="" />
-				<img :src="starYellow" alt="" />
-			</div>
-			<div class="checkbox-star">
-				<input class="mg4" type="checkbox" v-model="selected" v-on:change="checkboxOne(selected)" value="3" />
-				<img :src="starYellow" alt="" />
-				<img :src="starYellow" alt="" />
-				<img :src="starYellow" alt="" />
-			</div>
-			<div class="checkbox-star">
-				<input class="mg4" type="checkbox" v-model="selected" v-on:change="checkboxOne(selected)" value="4" />
-				<img :src="starYellow" alt="" />
-				<img :src="starYellow" alt="" />
-				<img :src="starYellow" alt="" />
-				<img :src="starYellow" alt="" />
-			</div>
-			<div class="checkbox-star">
-				<input class="mg4" type="checkbox" v-model="selected" v-on:change="checkboxOne(selected)" value="5" />
-				<img :src="starYellow" alt="" />
-				<img :src="starYellow" alt="" />
-				<img :src="starYellow" alt="" />
-				<img :src="starYellow" alt="" />
-				<img :src="starYellow" alt="" />
+			<div class="checkbox-star" v-for="value in 5">
+				<input class="mg4" type="checkbox" v-model="selected" v-on:change="checkboxOne(selected)" :value="value" />
+				<img :src="starYellow" alt="" v-for="star in value" />
 			</div>
 		</div>
 	</div>
@@ -99,23 +73,25 @@
 					});
 
 					axios.get(this.api + '/q/', { params: { stars: this.selected } }).then(response => {
-						console.log(response.data);
+						this.$emit('filter', response.data);
 					});
 				} else {
 					this.selected = [];
-					axios.get(this.api).then(response => console.log(response.data));
+					axios.get(this.api).then(response => {
+						this.$emit('filter', response.data);
+					});
 				}
 			},
 			checkboxOne: function (selected) {
 				if ( Array.isArray(selected) ) {
 					axios.get(this.api + '/q/', { params: { stars: selected } }).then(response => {
-						console.log(response.data);
+						this.$emit('filter', response.data);
 					});
 				}
 			},
 			searchForNameHotel: function (name) {
 				axios.get(`${this.api}/q/${name}`).then(response => {
-					console.log(response.data);
+					this.$emit('filter', response.data);
 				});
 			}
 		}

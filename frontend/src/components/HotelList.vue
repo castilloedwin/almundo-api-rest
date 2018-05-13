@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="info-hotel" v-for="hotel in hotels">
+		<div class="info-hotel" v-for="hotel in filterHotels()">
 			<div class="column-left">
 				<div class="picture-hotel">
 					<img :src="'/static/assets/images/hotels/' + hotel.image" alt="" />
@@ -32,6 +32,8 @@
 
 	export default {
 
+		props: ['filter'],
+
 		created() {
 			this.getHotels();	
 		},
@@ -45,9 +47,12 @@
 				axios.get('http://localhost:8000/api/v1/hotels').then(response => {
 					this.hotels = response.data;
 				});
+			},
+			filterHotels: function () {
+				return this.filter != false ? this.filter : this.hotels;
 			}
-		}
-
+		},
+		
 	}
 
 </script>
@@ -61,6 +66,7 @@
 		padding: 0
 	
 	.info-hotel
+		margin-bottom: 15px
 		padding: 10px
 		background-color: white
 		border: solid 1px darken($gray, 7%)

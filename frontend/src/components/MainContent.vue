@@ -1,10 +1,10 @@
 <template>
 	<div id="main-content">
 		<aside id="filter-data">
-			<filter-data></filter-data>
+			<filter-data v-on:filter="filterData($event)"></filter-data>
 		</aside>
 		<section id="hotel-list">
-			<hotel-list></hotel-list>
+			<hotel-list :filter="hotels"></hotel-list>
 		</section>
 	</div>
 </template>
@@ -21,13 +21,16 @@
 		data() {
 
 			return {
-
+				hotels: []
 			}
 
 		},
 
 		methods: {
-
+			filterData: function (hotels) {
+				this.hotels = hotels;
+				console.log(hotels);
+			}
 		}
 
 	}
