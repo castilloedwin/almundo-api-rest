@@ -29,7 +29,6 @@
 		methods: {
 			filterData: function (hotels) {
 				this.hotels = hotels;
-				console.log(hotels);
 			}
 		}
 
@@ -39,12 +38,13 @@
 
 <style lang="sass" scoped>
 
-	#main-content
+	#hotel-list
 		padding: 20px
 
 	@media screen and(min-width: 1024px)
 
 		#main-content
+			padding: 20px
 			display: flex
 
 		#filter-data
@@ -53,5 +53,6 @@
 
 		#hotel-list
 			width: 75%
+			padding: 0
 
 </style>

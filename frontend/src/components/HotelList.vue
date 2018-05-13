@@ -74,15 +74,15 @@
 		.column-left
 
 			.picture-hotel
-				height: 190px
 				margin-right: 15px
 				overflow: hidden
 
 				img
-					width: 290px
+					width: 100%
 
 		.name-stars-hotel
 			p
+				margin-top: 10px
 				margin-bottom: 5px
 				color: $blueText
 
@@ -97,13 +97,13 @@
 						margin-right: 10px
 
 		.price-hotel
+			margin-top: 15px
 			padding: 34px 20px
 			text-align: center
-			border-left: dotted 2px #CCC
+			border-top: dotted 2px #CCC
 
 
 			.small-text
-				width: 170px
 				margin-bottom: 10px
 				font-size: 0.8em
 				color: #929292
@@ -144,9 +144,18 @@
 				flex-wrap: wrap
 
 				.picture-hotel
+					height: 190px
 
-		.name-stars-hotel
+					img
+						width: 290px
 
-		.price-hotel
+			.name-stars-hotel
+
+			.price-hotel
+				border-left: dotted 2px #CCC
+				border-top: none
+
+				.small-text
+					width: 170px
 
 </style>
