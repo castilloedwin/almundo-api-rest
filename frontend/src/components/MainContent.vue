@@ -46,6 +46,7 @@
 		#main-content
 			padding: 20px
 			display: flex
+			align-items: stretch
 
 		#filter-data
 			width: 308px

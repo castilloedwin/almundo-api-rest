@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<div class="info-hotel" v-for="hotel in filterHotels()">
+		<div v-if="!filterHotels().length" class="info-hotel">
+			<p class="not-found" v-text="filterHotels().message"></p>
+		</div>
+		<div v-else class="info-hotel" v-for="hotel in filterHotels()">
 			<div class="column-left">
 				<div class="picture-hotel">
 					<img :src="'/static/assets/images/hotels/' + hotel.image" alt="" />
@@ -49,10 +52,21 @@
 				});
 			},
 			filterHotels: function () {
-				return this.filter != false ? this.filter : this.hotels;
+
+				// Check if the props "filter" in a Array, the whenever want tell want to be data
+				if ( Array.isArray(this.filter) ) {
+					// If is empty because it is not execute any event.
+					if ( this.filter.length ) {
+						return this.filter;
+					}
+					// If not execute any event, go to return all the data.
+					return this.hotels;
+				}
+
+				// Return to object with the value "message" (Not Found)
+				return this.filter;
 			}
-		},
-		
+		}
 	}
 
 </script>
@@ -70,6 +84,11 @@
 		padding: 10px
 		background-color: white
 		border: solid 1px darken($gray, 7%)
+
+		.not-found
+			width: 100%
+			text-align: center
+			font-size: 1.3em
 
 		.column-left
 
@@ -136,7 +155,7 @@
 		.info-hotel
 			display: flex
 			flex-wrap: wrap
-			align-items: start
+			align-items: stretch
 			justify-content: space-between
 
 			.column-left
